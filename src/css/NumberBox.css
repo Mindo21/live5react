@@ -1,0 +1,20 @@
+.numberBox {
+    padding: 1em;
+    margin: 0.5em;
+    background-color: aliceblue;
+    border-radius: 100%;
+    border-color: black;
+    border-style: solid;
+}
+
+.numberBox.selected {
+    background-color: yellow;
+}
+
+.numberBox.correct {
+    background-color: green;
+}
+
+.numberBox.drawn {
+    background-color: red;
+}

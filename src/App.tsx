@@ -1,24 +1,42 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import NumbersSelectedScreen from './NumbersSelected/NumbersSelectedScreen';
+import { Dispatch } from 'redux';
+import { RootState } from './store/store';
+import { pickRandomNumbers, deselectPickedNumber, pickNewNumber, drawNumbers, resetLotery, runMultipleDraws } from './store/lotterySlice';
+import * as config from './config'
 
-function App() {
+
+const App: React.FC = () => {
+
+  const allNumbers = config.DEFAULT_NUMBERS_ARRAY
+  const drawnNumbers = useSelector((state: RootState) => state.lotteryReducer.drawnNumbers)
+  const pickedNumbers = useSelector((state: RootState) => state.lotteryReducer.pickedNumbers)
+  const hasDrawn = useSelector((state: RootState) => state.lotteryReducer.hasDrawn)
+  const wonMoneyCurrentDraw = useSelector((state: RootState) => state.lotteryReducer.wonMoneyCurrentDraw)
+  const wonMoney = useSelector((state: RootState) => state.lotteryReducer.wonMoney)
+  const quickRunStats = useSelector((state: RootState) => state.lotteryReducer.quickRunStats)
+  const dispatch = useDispatch()
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NumbersSelectedScreen
+        pickRandomNumbers={() => dispatch(pickRandomNumbers())}
+        pickNewNumber={(n: number) => dispatch(pickNewNumber(n))}
+        deselectPickedNumber={(n: number) => dispatch(deselectPickedNumber(n))}
+        drawNumbers={() => dispatch(drawNumbers())}
+        resetLotery={() => dispatch(resetLotery())}
+        runMultipleDraws={(numberOfDraws: number) => dispatch(runMultipleDraws(numberOfDraws))}
+        pickedNumbers={pickedNumbers}
+        allNumbers={allNumbers}
+        drawnNumbers={drawnNumbers}
+        hasDrawn={hasDrawn}
+        wonMoneyCurrentDraw={wonMoneyCurrentDraw}
+        wonMoney={wonMoney}
+        quickRunStats={quickRunStats}
+      />
     </div>
   );
 }

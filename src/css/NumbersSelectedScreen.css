@@ -1,0 +1,30 @@
+.numbersSelectedScreen {
+    align-items: center;
+}
+
+.allNumbers {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.legendSpan {
+    display: flex;
+}
+
+.selectedLegend {
+    width: 1em;
+    height: 1em;
+    background-color: yellow;
+}
+
+.correctLegend {
+    width: 1em;
+    height: 1em;
+    background-color: green;
+}
+
+.drawnAndNotSelectedLegend {
+    width: 1em;
+    height: 1em;
+    background-color: red;
+}
