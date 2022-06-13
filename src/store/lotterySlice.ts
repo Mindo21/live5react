@@ -63,7 +63,6 @@ export const lotterySlice = createSlice({
                 if (wonMoney > 0) gamesWon++
                 wonMoneyCurrentDraw += wonMoney
             }
-            console.log((gamesWon / action.payload) * 100)
             state.quickRunStats = {
                 numberOfDraws: action.payload,
                 gamesWon: gamesWon,

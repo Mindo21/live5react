@@ -10,7 +10,7 @@ export default function drawRandomNumbers() {
         const randomizedIndex = Math.floor(Math.random() * (max - min) + min)
         // add to drawn numbers and delete that number from the lottery array
         drawnNumbers = drawnNumbers.concat(lotteryNumbers[randomizedIndex])
-        lotteryNumbers.slice(randomizedIndex)
+        lotteryNumbers = lotteryNumbers.slice(0, randomizedIndex).concat(lotteryNumbers.slice(randomizedIndex + 1, lotteryNumbers.length))
     }
     return drawnNumbers
 }
